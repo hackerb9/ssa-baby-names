@@ -10,13 +10,13 @@ main() {
     echo "Collating all data from yob*.txt into alldata.txt"
     alldata | pv > alldata.txt
 
-    ### List of all possible names, in alphabetical order
-    echo "Creating list of all possible names: allnames.txt"
-#    grep -ho '[A-Za-z]*' "$datadir"/yob*.txt | pv | sort -u > allnames.txt
-
-    ###  Maximum occurances in any year
+    ###  Maximum occurances in any year, alphabetical order
     echo "Finding max occurances of each name: maxoccurances.txt"
     maxoccurances < alldata.txt  > maxoccurances.txt
+
+    ### List of all possible names, in alphabetical order, merging sex
+    echo "Creating list of all possible names: allnames.txt"
+    cat maxoccurances.txt | cut -f1 -d, | pv | sort -u > allnames.txt    
 }
 
 setup() {
