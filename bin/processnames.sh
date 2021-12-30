@@ -15,6 +15,7 @@ main() {
 #    grep -ho '[A-Za-z]*' "$datadir"/yob*.txt | pv | sort -u > allnames.txt
 
     ###  Maximum occurances in any year
+    echo "Finding max occurances of each name: maxoccurances.txt"
     maxoccurances < alldata.txt  > maxoccurances.txt
 }
 
@@ -73,8 +74,19 @@ maxoccurances() {
     # Note that if there is a tie for maxyear, the earlier year will be used.
 
     awk -F, '
+        { 
+	  if (max[$1$2]<$3) { max[$1$2]=$3; year[$1	$2]=$4; } 
+	}
 
-
+	END {
+	  asorti(max, sorted)
+	  for (i in sorted) {
+	    x = sorted[i]
+	    name = substr(x,0,length(x)-1)
+	    sex = substr(x,length(x))
+	    print name "," sex "," max[x] "," year[x];
+	  }
+	}	
     '   
 }
 
