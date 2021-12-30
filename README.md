@@ -13,9 +13,35 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
 
 ## Data Files
 
+* [alldata.txt](alldata.txt): All the Social Security Administration
+  birthname data merged into a single file, instead of having a
+  separate yob*.txt file for each year. (Note: SSA data only includes
+  names given to at least five babies in a single year.)
+
+  Sorted by year then sex then popularity. Format is comma separated
+  values, delimited by newlines:
+
+  > &lt;_name_>,&lt;_sex_>,&lt;_occurances_>,&lt;_year_>
+
+  2,020,863 entries, 33 MiB.
+
+* [maxoccurances.txt](maxoccurances.txt): The maximum number of
+  occurances of each name and the year that maximum was found.
+  (In case of ties, the earlier year is listed).
+    
+  > &lt;_name_>,&lt;_sex_>,&lt;_max occurances_>,&lt;_max year_>
+
+  Names are separated by sex, for example:
+
+      Charlie,F,2219,2020
+      Charlie,M,2891,1919
+
+  111,472 entries, 2 MiB.
+  
 * [allnames.txt](allnames.txt): A simple list of every name seen since
-  1880 that was given to at least five babies in a single year.
-  Currently there are 100,366 names listed, from Aaban to Zzyzx.
+  1880. Sexes are merged, so each name is listed only once.
+
+  Currently there are 100,364 names listed, from Aaban to Zzyzx.
 
 * [raw-data](raw-data): A directory for the unzipped data files from
   the SSA's [names.zip](raw-data/names.zip). The files are named by
@@ -55,8 +81,7 @@ but with lots of error checking.
 ### bin/processnames.sh
 
 [bin/processnames.sh](bin/processnames.sh) reads the raw data and creates
-more easily digested text files. At the moment, it only does one thing:
-generate [allnames.txt](allnames.txt).
+the more easily digested text files, such as [allnames.txt](allnames.txt).
 
 In the future, it will also create shorter lists by restricting names to the
 top _x_ percent.
