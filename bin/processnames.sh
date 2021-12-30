@@ -7,8 +7,8 @@ main() {
     fi
 
     ### List of all possible names, in alphabetical order
-    echo "List of all possible names: "
-    grep -ho '[A-Za-z]*' yob* | pvc | sort -u > ../allnames.txt
+    echo "Creating list of all possible names: allnames.txt"
+    grep -ho '[A-Za-z]*' yob* | pv | sort -u > ../allnames.txt
 }
 
 setup() {
@@ -29,8 +29,8 @@ setup() {
     fi
 
     # We will use pv to shows progress. If not installed, just use cat.
-    if ! type pvc >/dev/null 2>&1; then
-	pvc() { cat "$@"; }
+    if ! type pv >/dev/null 2>&1; then
+	pv() { cat "$@"; }
     fi
 }
 
