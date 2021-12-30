@@ -95,11 +95,7 @@ and how they have changed over the years. Some open questions:
 * What is the order of the operations? For examples, the name _María
   de los Ángeles_ is rendered in three different ways in the database:
 
-  1. `Mariadelosangel` (1982 to 1988)
-  2. `Mariadelosang  ` (1989 and 1995 to 2010)
-  3. `Mariadelos     ` (1994)
-
-  <details><summary>`$ grep Mariadelos raw-data/yob*`</summary>
+  <details><summary>$ grep Mariadelos raw-data/yob*</summary>
 
   ```grep
   raw-data/yob1982.txt:Mariadelosangel,F,6
@@ -127,7 +123,11 @@ and how they have changed over the years. Some open questions:
 
   </details>
 
-  It looks like something odd happened in 1989. One hypothesis that could
+  1. `Mariadelosangel` (1982 to 1988)
+  2. `Mariadelosang  ` (1989 and 1995 to 2010)
+  3. `Mariadelos     ` (1994)
+
+It looks like something odd changed in 1989. One hypothesis that could
   explain that change is that the transliteration to alphabetic ASCII is
   happening after the restriction of fifteen characters. Perhaps, because
   _María de los Ángeles_ has two diacritics, the maximum length is shortened
