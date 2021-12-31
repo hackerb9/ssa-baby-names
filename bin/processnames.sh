@@ -10,9 +10,9 @@ main() {
     echo "Collating all data from yob*.txt into alldata.txt"
     alldata | pv > alldata.txt
 
-    ###  Maximum occurances in any year, alphabetical order
+    ###  Maximum for each name, ordered by number of occurances
     echo "Finding max occurances of each name: maxoccurances.txt"
-    maxoccurances < alldata.txt  > maxoccurances.txt
+    maxoccurances < alldata.txt | sort -t, -rn -k3,3  > maxoccurances.txt
 
     ### List of all possible names, in alphabetical order, merging sex
     echo "Creating list of all possible names: allnames.txt"
@@ -75,7 +75,7 @@ maxoccurances() {
 
     awk -F, '
         { 
-	  if (max[$1$2]<$3) { max[$1$2]=$3; year[$1	$2]=$4; } 
+	  if (max[$1$2]<$3) { max[$1$2]=$3; line[$1$2]=$0; } 
 	}
 
 	END {
@@ -84,7 +84,7 @@ maxoccurances() {
 	    x = sorted[i]
 	    name = substr(x,0,length(x)-1)
 	    sex = substr(x,length(x))
-	    print name "," sex "," max[x] "," year[x];
+	    print line[x];
 	  }
 	}	
     '   

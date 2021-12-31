@@ -26,22 +26,33 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
   2,020,863 entries, 33 MiB.
 
 * [maxoccurances.txt](maxoccurances.txt): The maximum number of
-  occurances of each name and the year that maximum was found.
-  (In case of ties, the earlier year is listed).
+  occurances of each name and the year that maximum was found. (In
+  case of ties, the earlier year is listed). 
     
   > &lt;_name_>,&lt;_sex_>,&lt;_max occurances_>,&lt;_max year_>
 
-  Names are separated by sex, for example:
+  File is sorted by number of occurances, from most to least.
 
-      Charlie,F,2219,2020
+  <details><summary>The top five entries</summary>
+
+      Linda,F,99693,1947
+      James,M,94764,1947
+      Michael,M,92718,1957
+      Robert,M,91647,1947
+      John,M,88319,1947
+  </details>
+
+  Names are counted separately by sex, for example:
+
       Charlie,M,2891,1919
+      Charlie,F,2219,2020
 
   111,472 entries, 2 MiB.
   
 * [allnames.txt](allnames.txt): A simple list of every name seen since
   1880. Sexes are merged, so each name is listed only once.
 
-  Currently there are 100,364 names listed, from Aaban to Zzyzx.
+  Currently there are 100,364 names, from Aaban to Zzyzx.
 
 * [raw-data](raw-data): A directory for the unzipped data files from
   the SSA's [names.zip](raw-data/names.zip). The files are named by
