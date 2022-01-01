@@ -101,7 +101,7 @@ Another possible addition is merging names that sound the same onto a single
 line. This could be done using Knuth's soundex or other phonetic algorithm.
 (See James Turk's [Jellyfish library](https://github.com/jamesturk/jellyfish).)
 
-### Munging
+## Munging
 
 Note that the database SSA provides has the data munged in various
 ways which they have not documented. This appears to include:
@@ -116,7 +116,7 @@ Take the name _María de los Ángeles_ which suffers from all of the
 above restrictions and is rendered in the database as:
 `Mariadelosangel` and `Mariadelosang`.
 
-#### How have munging policies changed over time?
+### How have munging policies changed over time?
 
 It is not clear what the SSA policies are concerning the name format
 and how they have changed over the years. Some open questions:
