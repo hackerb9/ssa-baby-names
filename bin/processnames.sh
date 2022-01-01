@@ -18,9 +18,9 @@ main() {
     echo "Finding max occurances, merging sex: maxoccurances.txt"
     sort -u -k1,1 -t, < maxoccurbysex.txt | pv | sort -t, -rns -k3,3  > maxoccurances.txt
 
-    ### List of all possible names, in alphabetical order, merging sex
+    ### List of all possible names, merging sex, from most occurances to least
     echo "Creating list of all possible names: allnames.txt"
-    cat maxoccurances.txt | cut -f1 -d, | sort -u > allnames.txt    
+    cat maxoccurances.txt | cut -f1 -d, > allnames.txt    
 
     ### List of all commonly given names, in order of occurances, merging sex
     for t in 100 500 1000; do
