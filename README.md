@@ -26,8 +26,19 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
   2,020,863 entries, 33 MiB.
 
 * [maxoccurances.txt](maxoccurances.txt): The maximum number of
-  occurances of each name and the year that maximum was found. (In
-  case of ties, the earlier year is listed). 
+  occurances of each name (merged sex) and the year that maximum was
+  found. (In case of ties, the earlier year is listed).
+    
+  > &lt;_name_>,&lt;_sex_>,&lt;_max occurances_>,&lt;_max year_>
+
+  File is sorted by most babies named in a single year, from most to least.
+
+  Each name is listed only once, under the sex that had the most
+  occurances. For example, `Charlie` occurs as male, but not female.
+
+* [maxoccurbysex.txt](maxoccurbysex.txt): The maximum number of
+  occurances of each name (separated by sex) and the year that maximum
+  was found. (In case of ties, the earlier year is listed).
     
   > &lt;_name_>,&lt;_sex_>,&lt;_max occurances_>,&lt;_max year_>
 
@@ -50,9 +61,16 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
   111,472 entries, 2 MiB.
   
 * [allnames.txt](allnames.txt): A simple list of every name seen since
-  1880. Sexes are merged, so each name is listed only once.
+  1880. Sexes are merged, so each name is listed only once. Sorted by
+  most babies in a single year to the least.
 
   Currently there are 100,364 names, from Aaban to Zzyzx.
+
+* [atleast1000.txt](atleast1000.txt),
+  [atleast500.txt](atleast500.txt), [atleast100.txt](atleast100.txt):
+  Simple list, restricted to names that have been given to at least
+  _x_ number of babies in a single year. Sorted from greatest number
+  of occurances to least.
 
 * [raw-data](raw-data): A directory for the unzipped data files from
   the SSA's [names.zip](raw-data/names.zip). The files are named by
