@@ -11,12 +11,22 @@ main() {
     alldata | pv > alldata.txt
 
     ###  Maximum for each name, ordered by number of occurances
-    echo "Finding max occurances of each name: maxoccurances.txt"
-    maxoccurances < alldata.txt | sort -t, -rn -k3,3  > maxoccurances.txt
+    echo "Finding max occurances of each name, by sex: maxoccurbysex.txt"
+    maxoccurances < alldata.txt | pv | sort -t, -rns -k3,3  > maxoccurbysex.txt
+
+    ###  Maximum for each name, but merging sex (only one "pat")
+    echo "Finding max occurances, merging sex: maxoccurances.txt"
+    sort -u -k1,1 -t, < maxoccurbysex.txt | pv | sort -t, -rns -k3,3  > maxoccurances.txt
 
     ### List of all possible names, in alphabetical order, merging sex
     echo "Creating list of all possible names: allnames.txt"
-    cat maxoccurances.txt | cut -f1 -d, | pv | sort -u > allnames.txt    
+    cat maxoccurances.txt | cut -f1 -d, | sort -u > allnames.txt    
+
+    ### List of all commonly given names, in order of occurances, merging sex
+    for t in 100 500 1000; do
+	echo "Names given to at least $t babies in one year: atleast${t}.txt"
+	atleast $t < maxoccurances.txt | cut -f1 -d, > atleast${t}.txt
+    done
 }
 
 setup() {
@@ -88,6 +98,18 @@ maxoccurances() {
 	  }
 	}	
     '   
+}
+
+
+atleast() {
+    # Standard input: maxoccurances.txt
+    # 		      <name>,<sex>,<max>,<maxyear>
+    # Standard output: same, but with names that occur less than $1 removed
+
+    threshold=${1:-1000}	# First argument is min number of occurances
+    awk -F, -v t=$threshold '
+     	$3 >= t { print }
+    '
 }
 
 
