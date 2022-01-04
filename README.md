@@ -70,7 +70,7 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
 
 * [identifiers.txt](identifiers.txt): Based on allnames.txt, a list of
   over 100k valid, unique, memorable identifiers. Every line contains
-  a sequence of 2 to most 15 lowercase ASCII characters. Most will be
+  a sequence of 2 to 15 lowercase ASCII characters. Most will be
   recognized by English speakers as given names.
 
   <details>
