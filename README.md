@@ -15,13 +15,13 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
 
 * [alldata.txt](alldata.txt): All the Social Security Administration
   birthname data merged into a single file, instead of having a
-  separate yob*.txt file for each year. (Note: SSA data only includes
-  names given to at least five babies in a single year.)
-
-  Sorted by year then sex then popularity. Format is comma separated
-  values, delimited by newlines:
+  separate yob*.txt file for each year. Sorted by year then sex then
+  popularity. Format is comma separated values, delimited by newlines:
 
   > &lt;_name_>,&lt;_sex_>,&lt;_occurances_>,&lt;_year_>
+
+  Note: SSA data only includes names given to at least five babies in
+  a single year and does not include single letter names.
 
   2,020,863 entries, 33 MiB.
 
@@ -31,8 +31,7 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
     
   > &lt;_name_>,&lt;_sex_>,&lt;_max occurances_>,&lt;_max year_>
 
-  File is sorted by most babies named in a single year, from most to least.
-
+  File is sorted by most babies named in a single year.
   Each name is listed only once, under the sex that had the most
   occurances. For example, `Charlie` occurs as male, but not female.
 
@@ -42,21 +41,24 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
     
   > &lt;_name_>,&lt;_sex_>,&lt;_max occurances_>,&lt;_max year_>
 
+  <details>
+  
   File is sorted by number of occurances, from most to least.
 
-  <details><summary>The top five entries</summary>
+  The top five entries:
 
       Linda,F,99693,1947
       James,M,94764,1947
       Michael,M,92718,1957
       Robert,M,91647,1947
       John,M,88319,1947
-  </details>
 
   Names are counted separately by sex, for example:
 
       Charlie,M,2891,1919
       Charlie,F,2219,2020
+
+  </details>
 
   111,472 entries, 2 MiB.
   
@@ -65,6 +67,32 @@ database from https://www.ssa.gov/oact/babynames/names.zip.
   most babies in a single year to the least.
 
   Currently there are 100,364 names, from Aaban to Zzyzx.
+
+* [identifiers.txt](identifiers.txt): Based on allnames.txt, a list of
+  over 100k valid, unique, memorable identifiers. Every line contains
+  a sequence of 2 to most 15 lowercase ASCII characters. Most will be
+  recognized by English speakers as given names.
+
+  <details>
+
+  This differs from [allnames.txt](allnames.txt) in two ways:
+
+  1. The "NATO Phonetic Alphabet" has been prepended at the beginning.
+  2. Names are lower case.
+
+  While this file could be handy for many things, the idea is that a
+  project which is trying to deobfuscate code can simply grab an
+  identifier from this list to use as a function name. This will
+  hopefully make reading such source code easier.
+
+  Note that no attempt has been made to remove homophones (names that
+  are spelled differently but sound similar). If this turns out to be
+  a problem in practice, we can turn to phonetic algorithms, like
+  Soundex, to keep only one. (More popular spellings appear earlier in
+  the list, so we'd keep "Aaron", name number 159, and toss "Erin",
+  name number 161).
+
+  </details>
 
 * [atleast1000.txt](atleast1000.txt),
   [atleast500.txt](atleast500.txt), [atleast100.txt](atleast100.txt):
