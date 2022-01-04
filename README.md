@@ -140,12 +140,19 @@ but with lots of error checking.
 [bin/processnames.sh](bin/processnames.sh) reads the raw data and creates
 the more easily digested text files, such as [allnames.txt](allnames.txt).
 
-In the future, it will also create shorter lists by restricting names to the
-top _x_ percent.
+#### Future ideas
 
-Another possible addition is merging names that sound the same onto a single
-line. This could be done using Knuth's soundex or other phonetic algorithm.
-(See James Turk's [Jellyfish library](https://github.com/jamesturk/jellyfish).)
+* Perhaps sort files by _total_ usage of a name instead of by max
+  number of babies named in a year. This would be different in that
+  names which are only briefly popular would be pushed lower in the
+  list and names which have no stand out years but are perennial
+  favorites will move up. 
+
+* Create shorter lists by restricting names to the top _x_ percent.
+
+* Merge names that sound the same onto a single line. This could be
+  done using Knuth's soundex or other phonetic algorithm. (See James
+  Turk's [Jellyfish library](https://github.com/jamesturk/jellyfish).)
 
 ## Munging
 
